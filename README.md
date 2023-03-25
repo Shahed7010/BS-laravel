@@ -2,7 +2,9 @@
 
 
 # BS-Laravel
+### Please create a database and import the ```ecommerce.sql``` file.
+#### (```ecommerce.sql``` file has attached to the project)
 
 ### set database credential on ```.env``` file. 
-#### (.sql file has attached to the project)
+
 ### run: ```php artisan serve``` for live preview.
