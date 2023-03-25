@@ -29,11 +29,12 @@
             -- {{$cat['Name'] }}
 
             @if(count($cat['children']))
-                ({{ countChildrenInArray($cat['children']->toArray()) }})
+                ({{ countChildrenInArray($cat['children']->toArray()) + count($cat['items']) }})
                 <ul>
                     @include('partials.cat_list', ['array' => $cat['children']])
                 </ul>
             @else
+                ({{ count($cat['items']) }})
                 <br><br>
             @endif
             

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -11,7 +11,7 @@ class CategoryController extends Controller
     {
         $categories = Category::query()
             ->select(['Name', 'Id', 'Number'])
-            ->withCount('items')
+            ->with('items:Id,Number')
             ->with('children')
             ->get();
 
@@ -22,9 +22,10 @@ class CategoryController extends Controller
     {
         $categories = Category::query()
             ->select(['Name', 'Id', 'Number'])
-            ->withCount('items')
-            ->orderBy('items_count', 'desc')
-            ->get();
+            ->with('items:Id,Number')
+            ->get()
+            ->each(fn ($cat) => $cat->items_count = count($cat->items))
+            ->sortByDesc('items_count');
 
         return view('category_item', compact('categories'));
     }

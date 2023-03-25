@@ -3,12 +3,12 @@
         <li>
             {{ $cat['Name'] }}
             @if(count($cat['children']))
-            ({{ countChildrenInArray($cat['children']->toArray()) + $cat['items_count'] }})
-            <ul>
-                @include('partials.cat_list', ['array' => $cat['children']])
-            </ul>
+                ({{ countChildrenInArray($cat['children']->toArray()) + count($cat['items']) }})
+                <ul>
+                    @include('partials.cat_list', ['array' => $cat['children']])
+                </ul>
             @else
-            ({{ $cat['items_count'] }})
+                ({{ count($cat['items']) }})
             @endif
         </li>
     @endforeach

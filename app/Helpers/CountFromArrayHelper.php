@@ -8,7 +8,7 @@ if (!function_exists('countChildrenInArray')) {
             if (count($item['children'])) {
                 $count += countChildrenInArray($item['children']);
             }
-            $count += $item['items_count'] ?? 0;
+            $count += count($item['items']) ?? 0;
         }
         return $count;
     }

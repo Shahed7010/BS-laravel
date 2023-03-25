@@ -15,7 +15,7 @@ class Category extends Model
     public function children()
     {
         return $this->belongsToMany(Category::class, 'catetory_relations', 'ParentcategoryId', 'categoryId', 'Id', 'Id')
-            ->withCount('items')
+            ->with('items:Id,Number')
             ->with('children');
     }
     public function items()
